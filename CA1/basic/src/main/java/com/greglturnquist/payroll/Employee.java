@@ -38,6 +38,11 @@ public class Employee {
 	private Employee() {}
 
 	public Employee(String firstName, String lastName, String description, String jobTitle, int jobYears) {
+		if(firstName == null || firstName.isEmpty() || lastName == null || lastName.isEmpty() ||
+				description == null || description.isEmpty() || jobTitle == null || jobTitle.isEmpty() ||
+				jobYears < 0) {
+			throw new IllegalArgumentException("Invalid parameter(s)");
+		}
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.description = description;
@@ -69,6 +74,9 @@ public class Employee {
 	}
 
 	public void setId(Long id) {
+		if(id == null){
+			throw new IllegalArgumentException("Invalid parameter.");
+		}
 		this.id = id;
 	}
 
@@ -77,6 +85,9 @@ public class Employee {
 	}
 
 	public void setFirstName(String firstName) {
+		if(firstName == null || firstName.isEmpty()){
+			throw new IllegalArgumentException("Invalid parameter.");
+		}
 		this.firstName = firstName;
 	}
 
@@ -85,6 +96,9 @@ public class Employee {
 	}
 
 	public void setLastName(String lastName) {
+		if(lastName == null || lastName.isEmpty()){
+			throw new IllegalArgumentException("Invalid parameter.");
+		}
 		this.lastName = lastName;
 	}
 
@@ -93,6 +107,9 @@ public class Employee {
 	}
 
 	public void setDescription(String description) {
+		if(description == null || description.isEmpty()){
+			throw new IllegalArgumentException("Invalid parameter.");
+		}
 		this.description = description;
 	}
 
@@ -101,6 +118,9 @@ public class Employee {
 	}
 
 	public void setJobTitle(String jobTitle) {
+		if(jobTitle == null || jobTitle.isEmpty()){
+			throw new IllegalArgumentException("Invalid parameter.");
+		}
 		this.jobTitle = jobTitle;
 	}
 
@@ -109,6 +129,9 @@ public class Employee {
 	}
 
 	public void setJobYears(int jobYears) {
+		if(jobYears < 0){
+			throw new IllegalArgumentException("Invalid parameter.");
+		}
 		this.jobYears = jobYears;
 	}
 

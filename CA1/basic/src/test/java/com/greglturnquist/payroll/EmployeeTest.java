@@ -40,9 +40,92 @@ class EmployeeTest {
     }
 
     @Test
-    void testEquals() {
+    void testConstructor_nullFirstName() {
+        //Arrange
+        String expectedMessage = "Invalid parameter(s)";
         //Act + Assert
-        assertTrue(employee.equals(employee));
+        Exception result = assertThrows(IllegalArgumentException.class, () -> new Employee(null, lastName, description, jobTitle, jobYears));
+        assertEquals(expectedMessage, result.getMessage());
+    }
+
+    @Test
+    void testConstructor_emptyFirstName() {
+        //Arrange
+        String expectedMessage = "Invalid parameter(s)";
+        //Act + Assert
+        Exception result = assertThrows(IllegalArgumentException.class, () -> new Employee("", lastName, description, jobTitle, jobYears));
+        assertEquals(expectedMessage, result.getMessage());
+    }
+
+    @Test
+    void testConstructor_nullLastName() {
+        //Arrange
+        String expectedMessage = "Invalid parameter(s)";
+        //Act + Assert
+        Exception result = assertThrows(IllegalArgumentException.class, () -> new Employee(firstName, null, description, jobTitle, jobYears));
+        assertEquals(expectedMessage, result.getMessage());
+    }
+
+    @Test
+    void testConstructor_emptyLastName() {
+        //Arrange
+        String expectedMessage = "Invalid parameter(s)";
+        //Act + Assert
+        Exception result = assertThrows(IllegalArgumentException.class, () -> new Employee(firstName, "", description, jobTitle, jobYears));
+        assertEquals(expectedMessage, result.getMessage());
+    }
+
+    @Test
+    void testConstructor_nullDescription() {
+        //Arrange
+        String expectedMessage = "Invalid parameter(s)";
+        //Act + Assert
+        Exception result = assertThrows(IllegalArgumentException.class, () -> new Employee(firstName, lastName, null, jobTitle, jobYears));
+        assertEquals(expectedMessage, result.getMessage());
+    }
+
+    @Test
+    void testConstructor_emptyDescription() {
+        //Arrange
+        String expectedMessage = "Invalid parameter(s)";
+        //Act + Assert
+        Exception result = assertThrows(IllegalArgumentException.class, () -> new Employee(firstName, lastName, "", jobTitle, jobYears));
+        assertEquals(expectedMessage, result.getMessage());
+    }
+
+    @Test
+    void testConstructor_nullJobTitle() {
+        //Arrange
+        String expectedMessage = "Invalid parameter(s)";
+        //Act + Assert
+        Exception result = assertThrows(IllegalArgumentException.class, () -> new Employee(firstName, lastName, description, null, jobYears));
+        assertEquals(expectedMessage, result.getMessage());
+    }
+
+    @Test
+    void testConstructor_emptyJobTitle() {
+        //Arrange
+        String expectedMessage = "Invalid parameter(s)";
+        //Act + Assert
+        Exception result = assertThrows(IllegalArgumentException.class, () -> new Employee(firstName, lastName, description, "", jobYears));
+        assertEquals(expectedMessage, result.getMessage());
+    }
+
+    @Test
+    void testConstructor_negativeJobYears() {
+        //Arrange
+        String expectedMessage = "Invalid parameter(s)";
+        //Act + Assert
+        Exception result = assertThrows(IllegalArgumentException.class, () -> new Employee(firstName, lastName, description, jobTitle, -7));
+        assertEquals(expectedMessage, result.getMessage());
+    }
+
+    @Test
+    void testEquals() {
+        //Arrange
+        Employee employee1 = new Employee(firstName, lastName, description, jobTitle, jobYears);
+        //Act + Assert
+        assertTrue(employee.equals(employee1));
     }
 
     @Test
@@ -66,6 +149,23 @@ class EmployeeTest {
 
     @Test
     void testHashCode() {
+        //Arrange
+        Employee employee1 = new Employee(firstName, lastName, description, jobTitle, jobYears);
+        //Act + Assert
+        assertEquals(employee1.hashCode(), employee.hashCode());
+    }
+
+    @Test
+    void testHashCode_notEmployee() {
+        //Arrange
+        String firstName = "Rose";
+        String lastName = "Taylor";
+        String description = "description";
+        String jobTitle = "teacher";
+        int jobYears = 7;
+        Employee employee1 = new Employee(firstName, lastName, description, jobTitle, jobYears);
+        //Act + Assert
+        assertNotEquals(employee1.hashCode(), employee.hashCode());
     }
 
     @Test
@@ -91,6 +191,15 @@ class EmployeeTest {
     }
 
     @Test
+    void setId_invalidId() {
+        //Arrange
+        String expectedMessage = "Invalid parameter.";
+        //Act + Assert
+        Exception result = assertThrows(IllegalArgumentException.class, () -> new Employee(firstName, lastName, description, jobTitle, jobYears).setId(null));
+        assertEquals(expectedMessage, result.getMessage());
+    }
+
+    @Test
     void getFirstName() {
         //Arrange
         String expected = "Frodo";
@@ -109,6 +218,14 @@ class EmployeeTest {
         String result = employee.getFirstName();
         //Assert
         assertEquals(expected, result);
+    }
+    @Test
+    void setFirstName_invalidFirstName() {
+        //Arrange
+        String expectedMessage = "Invalid parameter.";
+        //Act + Assert
+        Exception result = assertThrows(IllegalArgumentException.class, () -> new Employee(firstName, lastName, description, jobTitle, jobYears).setFirstName(null));
+        assertEquals(expectedMessage, result.getMessage());
     }
 
     @Test
@@ -133,6 +250,15 @@ class EmployeeTest {
     }
 
     @Test
+    void setLastName_invalidLastName() {
+        //Arrange
+        String expectedMessage = "Invalid parameter.";
+        //Act + Assert
+        Exception result = assertThrows(IllegalArgumentException.class, () -> new Employee(firstName, lastName, description, jobTitle, jobYears).setLastName(""));
+        assertEquals(expectedMessage, result.getMessage());
+    }
+
+    @Test
     void getDescription() {
         //Arrange
         String expected = "ring bearer";
@@ -151,6 +277,15 @@ class EmployeeTest {
         String result = employee.getDescription();
         //Assert
         assertEquals(expected, result);
+    }
+
+    @Test
+    void setDescription_invalidDescription() {
+        //Arrange
+        String expectedMessage = "Invalid parameter.";
+        //Act + Assert
+        Exception result = assertThrows(IllegalArgumentException.class, () -> new Employee(firstName, lastName, description, jobTitle, jobYears).setDescription(null));
+        assertEquals(expectedMessage, result.getMessage());
     }
 
     @Test
@@ -175,6 +310,15 @@ class EmployeeTest {
     }
 
     @Test
+    void setJobTitle_invalidJobTitle() {
+        //Arrange
+        String expectedMessage = "Invalid parameter.";
+        //Act + Assert
+        Exception result = assertThrows(IllegalArgumentException.class, () -> new Employee(firstName, lastName, description, jobTitle, jobYears).setJobTitle(""));
+        assertEquals(expectedMessage, result.getMessage());
+    }
+
+    @Test
     void getJobYears() {
         //Arrange
         int expected = 3;
@@ -193,6 +337,15 @@ class EmployeeTest {
         int result = employee.getJobYears();
         //Assert
         assertEquals(expected, result);
+    }
+
+    @Test
+    void setJobYears_negativeJobYears() {
+        //Arrange
+        String expectedMessage = "Invalid parameter.";
+        //Act + Assert
+        Exception result = assertThrows(IllegalArgumentException.class, () -> new Employee(firstName, lastName, description, jobTitle, jobYears).setJobYears(-1));
+        assertEquals(expectedMessage, result.getMessage());
     }
 
     @Test
