@@ -41,7 +41,7 @@ public class Employee {
 	public Employee(String firstName, String lastName, String description, String jobTitle, int jobYears, String email) {
 		if(firstName == null || firstName.isEmpty() || lastName == null || lastName.isEmpty() ||
 				description == null || description.isEmpty() || jobTitle == null || jobTitle.isEmpty() ||
-				jobYears < 0 || email == null ||email.isEmpty()) {
+				jobYears < 0 || email == null || !email.contains("@")) {
 			throw new IllegalArgumentException("Invalid parameter(s)");
 		}
 		this.firstName = firstName;
@@ -143,7 +143,7 @@ public class Employee {
 	}
 
 	public void setEmail(String email) {
-		if(email == null || email.isEmpty()){
+		if(email == null || !email.contains("@")){
 			throw new IllegalArgumentException("Invalid parameter.");
 		}
 		this.email = email;

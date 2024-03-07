@@ -391,6 +391,15 @@ class EmployeeTest {
     }
 
     @Test
+    void setEmail_invalidEmail_withoutAt() {
+        //Arrange
+        String expectedMessage = "Invalid parameter.";
+        //Act + Assert
+        Exception result = assertThrows(IllegalArgumentException.class, () -> new Employee(firstName, lastName, description, jobTitle, jobYears, email).setEmail("email"));
+        assertEquals(expectedMessage, result.getMessage());
+    }
+
+    @Test
     void testToString() {
         //Arrange
         employee.setId(1L);
