@@ -75,3 +75,9 @@ task createBackup(type: Copy, dependsOn: classes) {
     into 'build/backup'
 }
 
+task zip(type: Zip, dependsOn: classes) {
+    from 'src'
+    archiveFileName = 'backup.zip'
+    destinationDir(file('build'))
+}
+
