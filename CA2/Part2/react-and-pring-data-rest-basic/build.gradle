@@ -39,3 +39,10 @@ task copyJar(type: Copy, dependsOn: classes) {
     from 'build/libs'
     into 'dist'
 }
+
+
+task deleteFilesGenByWebpack(type: Delete) {
+	delete 'src/main/resources/static/built/'
+}
+
+clean.dependsOn deleteFilesGenByWebpack
