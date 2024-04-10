@@ -34,3 +34,8 @@ frontend {
 tasks.named('test') {
 	useJUnitPlatform()
 }
+
+task copyJar(type: Copy, dependsOn: classes) {
+    from 'build/libs'
+    into 'dist'
+}
