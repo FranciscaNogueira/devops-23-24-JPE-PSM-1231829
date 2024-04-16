@@ -41,6 +41,6 @@ out/
 node_modules/
 .frontend-gradle-plugin/
 node/
-.package-lock.json
+package-lock.json
 src/main/resources/static/built/
 
