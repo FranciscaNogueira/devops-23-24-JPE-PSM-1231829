@@ -35,3 +35,12 @@ out/
 
 ### VS Code ###
 .vscode/
+
+
+### Ignoring generated frontend files ###
+node_modules/
+.frontend-gradle-plugin/
+node/
+.package-lock.json
+src/main/resources/static/built/
+

@@ -1,1 +1,0 @@
-/Users/kika/Desktop/Switch/segundoSemestre/devOps/praticas/gitRepositorio/CA2/Part2/react-and-pring-data-rest-basic/node/bin/npm
