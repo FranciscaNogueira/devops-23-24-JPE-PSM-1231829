@@ -66,6 +66,22 @@ Vagrant.configure("2") do |config|
       # Change the following command to clone your own repository!
       git clone https://github.com/FranciscaNogueira/devops-23-24-JPE-PSM-1231829
       cd devops-23-24-JPE-PSM-1231829/CA2/Part2/react-and-pring-data-rest-basic
+      echo "
+spring.data.rest.base-path=/api
+#spring.datasource.url=jdbc:h2:mem:jpadb
+# In the following settings the h2 file is created in /home/vagrant folder
+spring.datasource.url=jdbc:h2:tcp://192.168.56.11:9092/./jpadb;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+spring.datasource.driverClassName=org.h2.Driver
+spring.datasource.username=sa
+spring.datasource.password=
+spring.jpa.database-platform=org.hibernate.dialect.H2Dialect
+# So that spring will no drop de database on every execution.
+spring.jpa.hibernate.ddl-auto=update
+spring.h2.console.enabled=true
+spring.h2.console.path=/h2-console
+spring.h2.console.settings.web-allow-others=true
+      " > src/main/resources/application.properties
+
       chmod u+x gradlew
       ./gradlew build
       # To execute the jar file, booting the spring app, do the following command:
