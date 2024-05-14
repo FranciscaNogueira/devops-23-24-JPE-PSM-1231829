@@ -1,7 +1,7 @@
 # CA3-Part1
 
 ## Introduction
-The objective of the part I of this project is to improve skills in using VirtualBox, integrating projects from previous work in a VirtualBox/UTM virtual environment running Ubuntu.
+The objective of the part I of this project is to improve skills in using VirtualBox, integrating projects from previous work in a VirtualBox virtual environment running Ubuntu.
 
 This tutorial will have the following structure:
 1. [Part I](#1part-i)
