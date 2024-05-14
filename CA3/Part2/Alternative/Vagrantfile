@@ -1,0 +1,23 @@
+Vagrant.configure("2") do |config|
+
+  #============
+  # Configurações específicas para o container da base de dados
+  config.vm.define "db" do |db|
+    db.vm.provider "docker" do |d|
+      d.image = "buildo/h2database:2017-04-23"
+      d.name = "db_container"
+      d.create_args = ["--publish", "8082:8082", "--publish", "9092:9092"]
+    end
+  end
+
+  #============
+  # Configurações específicas para o container que corre a aplicação java
+  config.vm.define "web" do |web|
+    web.vm.provider "docker" do |d|
+      d.image = "ubuntu:bionic"
+      d.name = "web_container"
+      d.create_args = ["--publish", "8080:8080"]
+      d.cmd = ["/bin/bash", "-c", "apt-get update && apt-get install -y wget openjdk-17-jdk-headless git && git clone https://github.com/FranciscaNogueira/devops-23-24-JPE-PSM-1231829  && cd devops-23-24-JPE-PSM-1231829/CA2/Part2/react-and-pring-data-rest-basic && chmod u+x gradlew && ./gradlew build && chmod u+x gradlew && ./gradlew build && java -jar ./build/libs/react-and-pring-data-rest-basic-0.0.1-SNAPSHOT.jar"]
+    end
+  end
+end
