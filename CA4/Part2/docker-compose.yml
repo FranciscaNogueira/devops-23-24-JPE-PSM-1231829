@@ -1,0 +1,25 @@
+version: '3.7'
+services:
+  web:
+    image: 1231829/ca4part2_image
+    ports:
+      - "8080:8080"
+    networks:
+      - mynetwork
+    depends_on:
+      - db
+  db:
+    image: jesperdj/h2 
+    ports:
+      - "8082:8082"
+      - "9092:9092"
+    networks:
+      - mynetwork
+    volumes:
+      - h2-data:/opt/h2-data
+
+networks:
+  mynetwork:
+
+volumes:
+  h2-data:
