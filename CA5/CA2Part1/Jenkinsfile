@@ -8,21 +8,23 @@ pipeline {
                 echo 'Checking out...'
                 git branch: 'main', credentialsId: 'FranciscaNogueira-github-credentials' , url:
                 'https://github.com/FranciscaNogueira/devops-23-24-JPE-PSM-1231829.git'
-
             }
         } 
         stage('Build') {
             steps {
-                echo 'Building...'
-                sh './gradlew clean build'
+                dir('CA5/CA2Part1') {
+                    echo 'Building...'
+                    sh './gradlew clean build'
+                }
             } 
         }
         stage('Archiving') { 
             steps {
-                echo 'Archiving...'
-                archiveArtifacts 'build/distributions/*' 
-            } 
-        
+                dir('CA5/CA2Part1') {
+                    echo 'Archiving...'
+                    archiveArtifacts 'build/distributions/*' 
+                }
+            }
         }
     }
 }
