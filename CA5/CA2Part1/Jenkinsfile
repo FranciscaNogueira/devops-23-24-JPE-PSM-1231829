@@ -6,8 +6,9 @@ pipeline {
         stage('Checkout') {
             steps {
                 echo 'Checking out...'
-                git credentialsId: 'FranciscaNogueira-github-credentials' , url:
+                git branch: 'main', credentialsId: 'FranciscaNogueira-github-credentials' , url:
                 'https://github.com/FranciscaNogueira/devops-23-24-JPE-PSM-1231829.git'
+
             }
         } 
         stage('Build') {
