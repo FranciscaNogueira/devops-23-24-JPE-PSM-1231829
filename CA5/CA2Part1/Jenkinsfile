@@ -1,0 +1,27 @@
+
+pipeline { 
+    agent any
+    
+    stages { 
+        stage('Checkout') {
+            steps {
+                echo 'Checking out...'
+                git credentialsId: 'FranciscaNogueira-github-credentials' , url:
+                'https://github.com/FranciscaNogueira/devops-23-24-JPE-PSM-1231829.git'
+            }
+        } 
+        stage('Build') {
+            steps {
+                echo 'Building...'
+                sh './gradlew clean build'
+            } 
+        }
+        stage('Archiving') { 
+            steps {
+                echo 'Archiving...'
+                archiveArtifacts 'build/distributions/*' 
+            } 
+        
+        }
+    }
+}
