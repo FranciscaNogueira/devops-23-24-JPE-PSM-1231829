@@ -25,7 +25,6 @@ dependencies {
 }
 
 // Define the main class for the application
-mainClassName = 'react-and-spring-data-rest-basic.App'
 description = "React and Spring Data REST Basic Example"
 version = "0.1.0"
 
