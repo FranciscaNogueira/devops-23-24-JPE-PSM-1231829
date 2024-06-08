@@ -24,6 +24,23 @@ dependencies {
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
 
+// Define the main class for the application
+mainClassName = 'react-and-spring-data-rest-basic.App'
+description = "React and Spring Data REST Basic Example"
+version = "0.1.0"
+
+jar {
+    duplicatesStrategy = DuplicatesStrategy.INCLUDE // allow duplicates
+
+    manifest {
+        attributes "Main-Class": "react-and-spring-data-rest-basic.App"
+    }
+
+   from {
+        configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
+    }
+}
+
 javadoc {
 	source = sourceSets.main.allJava
     destinationDir = file('build/docs/javadoc')
