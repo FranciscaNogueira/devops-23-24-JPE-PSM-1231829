@@ -55,8 +55,10 @@ pipeline {
             steps {
                 dir('CA5/CA2Part2') {
                     script {
-                        def dockerImage = docker.build("1231829/react-and-pring-data-rest-basic:${env.BUILD_ID}")
-                        dockerImage.push('latest')
+                        withDockerRegistry([credentialsId: 'docker-hub-credentials']) {
+                            def dockerImage = docker.build("1231829/react-and-pring-data-rest-basic:${env.BUILD_ID}")
+                            dockerImage.push('latest')
+                        }
                     }
                 }
             }
