@@ -26,13 +26,15 @@ dependencies {
 
 // Define the main class for the application
 description = "React and Spring Data REST Basic Example"
-version = "0.1.0"
-
+springBoot {
+	mainClass = 'com.greglturnquist.payroll.ReactAndSpringDataRestApplication'
+}
+ 
 jar {
     duplicatesStrategy = DuplicatesStrategy.INCLUDE // allow duplicates
 
     manifest {
-        attributes "Main-Class": "react-and-spring-data-rest-basic.App"
+        attributes "Main-Class": "com.greglturnquist.payroll.ReactAndSpringDataRestApplication"
     }
 
    from {

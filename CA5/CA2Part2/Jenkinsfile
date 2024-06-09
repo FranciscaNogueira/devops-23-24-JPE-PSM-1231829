@@ -33,13 +33,21 @@ pipeline {
                     echo 'Generating Javadoc...'
                     sh './gradlew javadoc'
                 }
+                publishHTML (target: [
+                    allowMissing: false,
+                    alwaysLinkToLastBuild: false,
+                    keepAll: true,
+                    reportDir: 'CA5/CA2Part2/build/docs/javadoc',
+                    reportFiles: 'index.html',
+                    reportName: "Javadoc"
+                ])
             }
         }
         stage('Archiving') { 
             steps {
                 dir('CA5/CA2Part2') {
                     echo 'Archiving...'
-                    archiveArtifacts 'build/distributions/*' 
+                    archiveArtifacts 'build/libs/*'
                 }
             }
         }
