@@ -51,10 +51,11 @@ pipeline {
                 }
             }
         }
-        stage ('Docker Image') {
+        stage ('Generate and publish Docker Image') {
             steps {
                 script {
-                    docker.build("my-image:${env.BUILD_ID}")
+                    def dockerImage = docker.build("1231829/react-and-pring-data-rest-basic:${env.BUILD_ID}")
+                    dockerImage.push('latest')
                 }
             }
         }
