@@ -54,6 +54,7 @@ pipeline {
         stage ('Generate and publish Docker Image') {
             steps {
                 dir('CA5/CA2Part2') {
+                    sh 'ls -la'
                     script {
                         def dockerImage = docker.build("1231829/react-and-pring-data-rest-basic:${env.BUILD_ID}")
                         dockerImage.push('latest')
